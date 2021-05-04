@@ -13,7 +13,7 @@ function App() {
     return (
         <>
             {tasks.map(task => <Task key={task.id} title={task.title} description={task.description}
-                                     status={task.status}/>)}
+                                     status={task.status} id={task.id}/>)}
         </>
     )
 }

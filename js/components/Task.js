@@ -1,8 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import Operations from "./Operations";
+import {getOperations} from "../api/operations";
 
 const Task = (props) => {
     // const {title, description, id, status, onRemoveTask} = props;
     const [status, setStatus] = useState(props.status);
+    const [operations, setOperations] = useState([]);
+
+    useEffect(() => {
+        getOperations(props.id, setOperations);
+    },[])
 
     return (
         <section className="card mt-5 shadow-sm">
@@ -33,8 +40,8 @@ const Task = (props) => {
             </div>
 
             {/*Komponent Operations*/}
+            <Operations taskID={props.id} operations={operations}/>
         </section>
-
     );
 };
 
