@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import ReactDOM from "react-dom";
 import {getTasks} from "./api/tasks";
+import Task from "./components/Task";
 
 function App() {
     const [tasks, setTasks] = useState([]);
@@ -11,9 +12,12 @@ function App() {
 
     return (
         <>
-            {tasks.map(task=><h1>{task.title}</h1>)}
+            {tasks.map(task => <Task key={task.id} title={task.title} description={task.description}
+                                     status={task.status}/>)}
         </>
     )
 }
 
-ReactDOM.render(<App/>, document.querySelector("#app"));
+ReactDOM.render(
+    <App/>
+    , document.querySelector("#app"));
