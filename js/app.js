@@ -11,7 +11,7 @@ function App() {
 
     return (
         <>
-            {tasks.map(task=>task.toString())}
+            {tasks.map(task=><h1>{task.title}</h1>)}
         </>
     )
 }
