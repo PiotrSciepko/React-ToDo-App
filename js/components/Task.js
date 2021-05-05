@@ -6,6 +6,7 @@ const Task = (props) => {
     // const {title, description, id, status, onRemoveTask} = props;
     const [status, setStatus] = useState(props.status);
     const [operations, setOperations] = useState([]);
+    const [form, setForm] = useState(true);
 
     useEffect(() => {
         getOperations(props.id, setOperations);
@@ -21,7 +22,8 @@ const Task = (props) => {
                 <div>
                     {/*Przyciski "Add operation" i "Finish" mają być widoczne
                       tylko jeżeli status zadania jest "open"*/}
-                    <button className="btn btn-info btn-sm mr-2" style={{display: status === "open" || "none"}}>
+                    <button className="btn btn-info btn-sm mr-2" style={{display: status === "open" || "none"}}
+                            onClick={()=>setForm(prev=>!prev)}>
                         Add operation
                         <i className="fas fa-plus-circle ml-1"/>
                     </button>
@@ -41,7 +43,7 @@ const Task = (props) => {
             </div>
 
             {/*Komponent Operations*/}
-            <Operations taskID={props.id} operations={operations}/>
+            <Operations taskID={props.id} operations={operations} form={form}/>
         </section>
     );
 };

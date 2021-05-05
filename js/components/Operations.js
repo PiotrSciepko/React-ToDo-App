@@ -6,7 +6,7 @@ const Operations = (props) => {
     return (
         <>
             <div className="card-body">
-                <form>
+                <form hidden={props.form}>
                     <div className="input-group">
                         <input type="text"
                                className="form-control"
