@@ -13,13 +13,13 @@ export const getTasks = async (successCallback) => {
             },
         });
 
-        const data = await response.json();
+        const data = (await response.json())
 
         if (data.error || typeof successCallback !== 'function') {
             throw new Error('Błąd! getTask');
         }
 
-        successCallback(data.data);
+        successCallback(data.data.reverse());
 
     } catch (err) {
         console.log(err);
@@ -43,7 +43,7 @@ export const addTask = async (newTask, successCallback) => {
             throw new Error('Błąd! addTask');
         }
 
-        successCallback(prev => [...prev, data.data]);
+        successCallback(prev => [data.data, ...prev]);
 
     } catch (err) {
         console.log(err);
