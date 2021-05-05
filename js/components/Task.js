@@ -9,7 +9,11 @@ const Task = (props) => {
 
     useEffect(() => {
         getOperations(props.id, setOperations);
-    },[])
+    }, [])
+
+    // const handleRemove = () => {
+    //     props.onRemoveTask(props.id);
+    // }
 
     return (
         <section className="card mt-5 shadow-sm">
@@ -33,7 +37,7 @@ const Task = (props) => {
 
                     {/*Przycisk usuwania ma być widoczny tylko
                       jeżeli nie ma żadnych operacji w zadaniu*/}
-                    <button className="btn btn-outline-danger btn-sm ml-2">
+                    <button className="btn btn-outline-danger btn-sm ml-2" onClick={() => props.onRemoveTask(props.id)}>
                         <i className="fas fa-trash false"/>
                     </button>
                 </div>
