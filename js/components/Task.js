@@ -11,10 +11,6 @@ const Task = (props) => {
         getOperations(props.id, setOperations);
     }, [])
 
-    // const handleRemove = () => {
-    //     props.onRemoveTask(props.id);
-    // }
-
     return (
         <section className="card mt-5 shadow-sm">
             <div className="card-header d-flex justify-content-between align-items-center">
