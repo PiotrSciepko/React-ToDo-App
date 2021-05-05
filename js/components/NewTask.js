@@ -11,6 +11,7 @@ const NewTask = ({onNewTask}) => {
     const handleSubmit = e => {
         e.preventDefault();
         onNewTask(newTask);
+        setNewTask({title:'', description:''});
     }
 
     return (
