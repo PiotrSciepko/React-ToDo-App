@@ -15,6 +15,7 @@ const Operations = (props) => {
         e.preventDefault();
         addOperation(props.taskID, newOperation, props.setOperations);
         props.setForm(prev => !prev);
+        setNewOperation({description: '', timeSpent: 0});
     }
 
     return (
