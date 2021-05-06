@@ -20,8 +20,33 @@ export const getOperations = async (id, successCallback) => {
             throw new Error('Błąd!');
         }
 
-        successCallback(data.data);
-        
+        successCallback(data.data.reverse());
+
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const addOperation = async (id, newOperation, successCallback) => {
+    try {
+        const response = await fetch(`${API_URL}/tasks/${id}/operations`, {
+            headers: {
+                "Authorization": API_KEY,
+                "Content-Type": "application/json"
+            },
+            method: "post",
+            body: JSON.stringify(newOperation),
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        if (data.error || typeof successCallback !== 'function') {
+            throw new Error('Błąd! addTask');
+        }
+
+        successCallback(prev => [data.data, ...prev]);
+
     } catch (err) {
         console.log(err);
     }

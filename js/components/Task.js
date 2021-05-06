@@ -55,7 +55,8 @@ const Task = (props) => {
             </div>
 
             {/*Komponent Operations*/}
-            <Operations taskID={props.id} operations={operations} form={form}/>
+            <Operations taskID={props.id} operations={operations} setOperations={setOperations} form={form}
+                        setForm={setForm}/>
         </section>
     );
 };
