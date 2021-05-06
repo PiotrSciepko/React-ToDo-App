@@ -71,3 +71,27 @@ export const removeTask = async (id, successCallback) => {
         console.log(err);
     }
 };
+
+export const updateTask = async (task, successCallback) => {
+    try {
+        const response = await fetch(`${API_URL}/tasks/${task.id}`, {
+            headers: {
+                "Authorization": API_KEY,
+                "Content-Type": "application/json"
+            },
+            method: "put",
+            body: JSON.stringify(task),
+        });
+
+        const data = await response.json();
+
+        if (data.error || typeof successCallback !== 'function') {
+            throw new Error('Błąd! addTask');
+        }
+
+        successCallback("closed");
+
+    } catch (err) {
+        console.log(err);
+    }
+};

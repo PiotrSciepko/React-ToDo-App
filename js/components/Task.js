@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Operations from "./Operations";
 import {getOperations} from "../api/operations";
+import {updateTask} from "../api/tasks";
 
 const Task = (props) => {
     // const {title, description, id, status, onRemoveTask} = props;
@@ -11,6 +12,16 @@ const Task = (props) => {
     useEffect(() => {
         getOperations(props.id, setOperations);
     }, [])
+
+    const handleFinish = () => {
+        const finishTask = {
+            id:props.id,
+            title: props.title,
+            description: props.description,
+            status: "closed"
+        }
+        updateTask(finishTask, setStatus);
+    }
 
     return (
         <section className="card mt-5 shadow-sm">
@@ -23,12 +34,13 @@ const Task = (props) => {
                     {/*Przyciski "Add operation" i "Finish" mają być widoczne
                       tylko jeżeli status zadania jest "open"*/}
                     <button className="btn btn-info btn-sm mr-2" style={{display: status === "open" || "none"}}
-                            onClick={()=>setForm(prev=>!prev)}>
+                            onClick={() => setForm(prev => !prev)}>
                         Add operation
                         <i className="fas fa-plus-circle ml-1"/>
                     </button>
 
-                    <button className="btn btn-dark btn-sm" style={{display: status === "open" || "none"}}>
+                    <button className="btn btn-dark btn-sm" style={{display: status === "open" || "none"}}
+                            onClick={handleFinish}>
                         Finish
                         <i className="fas fa-archive ml-1"/>
                     </button>
