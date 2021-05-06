@@ -15,7 +15,7 @@ const Task = (props) => {
 
     const handleFinish = () => {
         const finishTask = {
-            id:props.id,
+            id: props.id,
             title: props.title,
             description: props.description,
             status: "closed"
