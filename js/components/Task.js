@@ -47,7 +47,7 @@ const Task = (props) => {
 
                     {/*Przycisk usuwania ma być widoczny tylko
                       jeżeli nie ma żadnych operacji w zadaniu*/}
-                    <button style={{display: operations.length && "none"}}
+                    <button style={{display: operations.length ? "none" : "inline"}}
                             className="btn btn-outline-danger btn-sm ml-2" onClick={() => props.onRemoveTask(props.id)}>
                         <i className="fas fa-trash false"/>
                     </button>
@@ -56,7 +56,7 @@ const Task = (props) => {
 
             {/*Komponent Operations*/}
             <Operations taskID={props.id} operations={operations} setOperations={setOperations} form={form}
-                        setForm={setForm}/>
+                        setForm={setForm} status={status}/>
         </section>
     );
 };

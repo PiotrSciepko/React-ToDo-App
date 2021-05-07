@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Operation from "./Operation";
-import {addOperation} from "../api/operations";
+import {addOperation, removeOperation} from "../api/operations";
 
 const Operations = (props) => {
     // const {taskID, form, setForm, operations, setOperations, status} = props;
@@ -16,6 +16,10 @@ const Operations = (props) => {
         addOperation(props.taskID, newOperation, props.setOperations);
         props.setForm(prev => !prev);
         setNewOperation({description: '', timeSpent: 0});
+    }
+
+    const handleRemoveOperation = id => {
+        removeOperation(id, props.setOperations);
     }
 
     return (
@@ -39,7 +43,9 @@ const Operations = (props) => {
             <ul className="list-group list-group-flush">
                 {/*Komponenty Operation*/}
                 {props.operations.map(operation => <Operation key={operation.id} description={operation.description}
-                                                              timeSpent={operation.timeSpent}/>)}
+                                                              timeSpent={operation.timeSpent} status={props.status}
+                                                              id={operation.id}
+                                                              onRemoveOperation={handleRemoveOperation}/>)}
             </ul>
         </>
     );

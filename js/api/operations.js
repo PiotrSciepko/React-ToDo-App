@@ -51,3 +51,27 @@ export const addOperation = async (id, newOperation, successCallback) => {
         console.log(err);
     }
 };
+
+export const removeOperation = async (id, successCallback) => {
+    try {
+        const response = await fetch(`${API_URL}/operations/${id}`, {
+            headers: {
+                "Authorization": API_KEY,
+            },
+            method: "delete",
+        });
+
+        const data = await response.json();
+        console.log(id);
+        console.log(data);
+
+        if (data.error || typeof successCallback !== 'function') {
+            throw new Error('Błąd! deleteOperation');
+        }
+
+        successCallback(prev => prev.filter(operation => operation.id !== id));
+
+    } catch (err) {
+        console.log(err);
+    }
+};
