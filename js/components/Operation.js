@@ -1,8 +1,23 @@
 import React, {useState} from 'react';
+import {updateOperation} from "../api/operations";
 
 const Operation = (props) => {
     // const {description, id, onRemoveOperation, timeSpent, status} = props;
     const [toggleAddTime, setToggleAddTime] = useState(false);
+    const [timeSpent, setTimeSpent] = useState(props.timeSpent);
+    const [inputTime, setInputTime] = useState('');
+
+    const handleAddTime = e => {
+        e.preventDefault();
+        const updatedOperation = {
+            id: props.id,
+            description: props.description,
+            timeSpent: +timeSpent + +inputTime
+        }
+        updateOperation(updatedOperation, setTimeSpent)
+        setToggleAddTime(prev => !prev);
+        setInputTime('');
+    }
 
     return (
         <li className="list-group-item d-flex justify-content-between align-items-center">
@@ -11,8 +26,8 @@ const Operation = (props) => {
 
                 {/*Czas wyświetlany tylko jeżeli większy od 0*/}
                 <span className="badge badge-success badge-pill ml-2">
-                    {props.timeSpent ?
-                        (Math.floor(props.timeSpent / 60) + "h " + (props.timeSpent % 60) + "m") : null}
+                    {timeSpent ?
+                        (Math.floor(timeSpent / 60) + "h " + (timeSpent % 60) + "m") : null}
                 </span>
             </div>
 
@@ -22,9 +37,14 @@ const Operation = (props) => {
                     <input type="number"
                            className="form-control"
                            placeholder="Spent time in minutes"
-                           style={{width: "12rem"}}/>
+                           style={{width: "12rem"}}
+                           value={inputTime}
+                           onChange={e => setInputTime(e.target.value)}/>
                     <div className="input-group-append">
-                        <button className="btn btn-outline-success"><i className="fas fa-save"/></button>
+                        <button className="btn btn-outline-success"
+                                onClick={handleAddTime}>
+                            <i className="fas fa-save"/>
+                        </button>
                         <button className="btn btn-outline-dark"
                                 onClick={e => {
                                     e.preventDefault();

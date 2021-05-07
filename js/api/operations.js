@@ -72,3 +72,27 @@ export const removeOperation = async (id, successCallback) => {
         console.log(err);
     }
 };
+
+export const updateOperation = async (operation, successCallback) => {
+    try {
+        const response = await fetch(`${API_URL}/operations/${operation.id}`, {
+            headers: {
+                "Authorization": API_KEY,
+                "Content-Type": "application/json"
+            },
+            method: "put",
+            body: JSON.stringify(operation),
+        });
+
+        const data = await response.json();
+
+        if (data.error || typeof successCallback !== 'function') {
+            throw new Error('Błąd! updateOperation');
+        }
+
+        successCallback(operation.timeSpent);
+
+    } catch (err) {
+        console.log(err);
+    }
+};
