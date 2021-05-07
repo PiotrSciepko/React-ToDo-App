@@ -20,7 +20,8 @@ export const getOperations = async (id, successCallback) => {
             throw new Error('Błąd!');
         }
 
-        successCallback(data.data.reverse());
+        successCallback(data.data.sort((a, b) =>
+            b.addedDate.replace(/[^0-9]/g, '') - a.addedDate.replace(/[^0-9]/g, '')));
 
     } catch (err) {
         console.log(err);
@@ -41,7 +42,7 @@ export const addOperation = async (id, newOperation, successCallback) => {
         const data = await response.json();
 
         if (data.error || typeof successCallback !== 'function') {
-            throw new Error('Błąd! addTask');
+            throw new Error('Błąd! addOperation');
         }
 
         successCallback(prev => [data.data, ...prev]);
