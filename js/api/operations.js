@@ -39,7 +39,6 @@ export const addOperation = async (id, newOperation, successCallback) => {
         });
 
         const data = await response.json();
-        console.log(data);
 
         if (data.error || typeof successCallback !== 'function') {
             throw new Error('Błąd! addTask');
@@ -62,8 +61,6 @@ export const removeOperation = async (id, successCallback) => {
         });
 
         const data = await response.json();
-        console.log(id);
-        console.log(data);
 
         if (data.error || typeof successCallback !== 'function') {
             throw new Error('Błąd! deleteOperation');
