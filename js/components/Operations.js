@@ -3,7 +3,6 @@ import Operation from "./Operation";
 import {addOperation, removeOperation} from "../api/operations";
 
 const Operations = (props) => {
-    // const {taskID, form, setForm, operations, setOperations, status} = props;
     const [newOperation, setNewOperation] = useState({description: '', timeSpent: 0});
 
     const handleInput = e => {

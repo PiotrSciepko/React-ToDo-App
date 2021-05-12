@@ -4,7 +4,6 @@ import {getOperations} from "../api/operations";
 import {updateTask} from "../api/tasks";
 
 const Task = (props) => {
-    // const {title, description, id, status, onRemoveTask} = props;
     const [status, setStatus] = useState(props.status);
     const [operations, setOperations] = useState([]);
     const [form, setForm] = useState(true);

@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {updateOperation} from "../api/operations";
 
 const Operation = (props) => {
-    // const {description, id, onRemoveOperation, timeSpent, status} = props;
     const [toggleAddTime, setToggleAddTime] = useState(false);
     const [timeSpent, setTimeSpent] = useState(props.timeSpent);
     const [inputTime, setInputTime] = useState('');
